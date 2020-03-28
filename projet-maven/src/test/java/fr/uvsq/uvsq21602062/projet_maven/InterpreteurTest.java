@@ -23,5 +23,19 @@ public class InterpreteurTest {
 		Interpreteur i = new Interpreteur();
 		assertTrue(i.ajouter("autre") == 0);
 	}
+	
+	@Test
+	public void testExecuterVrai() {
+		Interpreteur i = new Interpreteur();
+		i.ajouter("undo");
+		assertTrue(i.executer("undo") == 1);
+	}
+	
+	@Test
+	public void testExecuterFaux() {
+		Interpreteur i = new Interpreteur();
+		i.ajouter("undo");
+		assertTrue(i.executer("quit") == 1);
+	}
 
 }

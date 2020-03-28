@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  */
 public class Interpreteur {
-	private HashMap<String, Commande> mapCommande;
+	protected HashMap<String, Commande> mapCommande;
 	
 	/**
 	 * Constructeur initialisant la variable mapCommande.
@@ -32,7 +32,6 @@ public class Interpreteur {
 			this.mapCommande.put("quit", c);
 		}
 		else {
-			System.out.println("La commande demandé n'existe pas.");
 			return 0;
 		}
 		return 1;
@@ -43,8 +42,14 @@ public class Interpreteur {
 	 * @param nomCommande
 	 * La valeur de retour correspond au succes ou non de l'execution.
 	 */
-	public void executer(String nomCommande) {
-		mapCommande.get(nomCommande).execute();
+	public int executer(String nomCommande) {
+		if(mapCommande.get(nomCommande) == null) {
+			return 0;
+		}
+		else {
+			mapCommande.get(nomCommande).execute();
+			return 1;
+		}
 	}
 	
 }
