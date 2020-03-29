@@ -3,7 +3,7 @@ package fr.uvsq.uvsq21602062.projet_maven;
 import java.util.ArrayList;
 
 /**
- * Classe implémentant l'interface Commande permettant de supprimer la derniere commande
+ * Classe implémentant l'interface Commande permettant de supprimer la derniere commande.
  * @author jean
  *
  */

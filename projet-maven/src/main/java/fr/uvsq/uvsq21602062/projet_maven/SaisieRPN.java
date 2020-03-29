@@ -41,11 +41,12 @@ public class SaisieRPN {
 			this.moteur.executer("enregistrer");
 		}
 		catch(NumberFormatException e) {
-			if(s == "undo" || s == "quit") {
+			if(s.equals("undo") || s.equals("quit")) {
 				this.moteur.executer(s);
 			}
 			else {
 				this.moteur.nouvelOperateur(s);
+				this.moteur.executer("appliquer");
 			}
 		}
 		finally {

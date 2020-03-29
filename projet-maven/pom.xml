@@ -86,7 +86,7 @@
  					</descriptorRefs>
             		<archive>
              			<manifest>
-                			<mainClass></mainClass>
+                			<mainClass>fr.uvsq.uvsq21602062.projet_maven.CalculatriceRPN</mainClass>
               			</manifest>
            			</archive>
           		</configuration>

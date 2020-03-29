@@ -3,8 +3,8 @@ package fr.uvsq.uvsq21602062.projet_maven;
 import java.util.ArrayList;
 
 /**
- * Classe dérivé de la classe Interpreteur permettant de gerrer les actions sur les
- * opérateurs et les oprérandes
+ * Classe dérivé de la classe Interpreteur permettant de gerrer les actions
+ * sur les opérateurs et les oprérandes.
  * @author jean
  *
  */
@@ -24,20 +24,20 @@ public class MoteurRPN extends Interpreteur<String> {
 	 * la commande obtenu à partir de son nom donné en argument.
 	 */
 	public int ajouter(String nomCommande) {
-		if(nomCommande == "undo" || nomCommande == "quit") {
+		if(nomCommande.equals("undo") || nomCommande.equals("quit")) {
 			return super.ajouter(nomCommande, this.listeOperandes);
 		}
-		else if(nomCommande == "enregistrer") {
+		else if(nomCommande.equals("enregistrer")) {
 			Commande c = new CommandeEnregistrerOp(this.listeOperandes);
 			this.mapCommande.put(nomCommande, c);
 			return 1;
 		}
-		else if(nomCommande == "obtenir") {
+		else if(nomCommande.equals("obtenir")) {
 			Commande c = new CommandeObtenirOp(this.listeOperandes);
 			this.mapCommande.put(nomCommande, c);
 			return 1;
 		}
-		else if(nomCommande == "appliquer") {
+		else if(nomCommande.equals("appliquer")) {
 			Commande c = new CommandeOperationSurOp(this.listeOperandes);
 			this.mapCommande.put(nomCommande, c);
 			return 1;
@@ -64,10 +64,10 @@ public class MoteurRPN extends Interpreteur<String> {
 	}
 	
 	/**
-	 * Méthode hérité de la classe Interpreteur qui executer la commande correspondant à nomCommande
+	 * Méthode hérité de la classe Interpreteur qui executer la commande correspondant à nomCommande.
 	 */
 	public int executer(String nomCommande) {
-		if(nomCommande == "undo" || nomCommande == "quit") {
+		if(nomCommande.equals("undo") || nomCommande.equals("quit")) {
 			return super.executer(nomCommande);
 		}
 		else {

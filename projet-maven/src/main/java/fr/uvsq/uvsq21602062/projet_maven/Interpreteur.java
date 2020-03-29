@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Classe interpretant les commandes demandé
+ * Classe interpretant les commandes demandées.
  * @author jean
  *
  */
@@ -24,11 +24,11 @@ public class Interpreteur<T> {
 	 * La valeur de retour correspond au succes ou non de l'ajout.
 	 */
 	public int ajouter(String nomCommande, ArrayList<T> arg) {
-		if(nomCommande == "undo") {
+		if(nomCommande.equals("undo")) {
 			Commande c = new CommandeUndo<T>(arg);
 			this.mapCommande.put("undo", c);
 		}
-		else if(nomCommande == "quit") {
+		else if(nomCommande.equals("quit")) {
 			Commande c = new CommandeQuit();
 			this.mapCommande.put("quit", c);
 		}

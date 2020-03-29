@@ -3,8 +3,7 @@ package fr.uvsq.uvsq21602062.projet_maven;
 import java.util.ArrayList;
 
 /**
- * Classe implémentant l'interface Commande permettant d'appliquer une oprération sur les
- * opérandes stockées.
+ * Classe implémentant l'interface Commande permettant d'appliquer une oprération sur les opérandes stockées.
  * @author jean
  *
  */
@@ -23,20 +22,26 @@ public class CommandeOperationSurOp implements Commande {
 			this.listeOperandes.remove(this.listeOperandes.size()-1);
 			this.listeOperandes.remove(this.listeOperandes.size()-1);
 			this.listeOperandes.remove(this.listeOperandes.size()-1);
-			if(operation == "+") this.listeOperandes.add(Integer.toString(x+y));
-			else if(operation == "-") this.listeOperandes.add(Integer.toString(x-y));
-			else if(operation == "*") this.listeOperandes.add(Integer.toString(x*y));
-			else if(operation == "/") {
+			if(operation.equals("+")) this.listeOperandes.add(Integer.toString(x+y));
+			else if(operation.equals("-")) this.listeOperandes.add(Integer.toString(x-y));
+			else if(operation.equals("*")) this.listeOperandes.add(Integer.toString(x*y));
+			else if(operation.equals("/")) {
 				if(y == 0) System.out.println("Division par 0 impossible.");
 				else this.listeOperandes.add(Integer.toString(x/y));
 			}
-			else System.out.println("L'operation n'est pas reconnu.");
+			else {
+				System.out.println("L'operation n'est pas reconnu.");
+				this.listeOperandes.add(Integer.toString(y));
+				this.listeOperandes.add(Integer.toString(x));
+			}
 		}
 		catch(IndexOutOfBoundsException e) {
 			System.out.println("Erreur : il n'y a pas assez d'élement dans la liste.");
+			this.listeOperandes.remove(this.listeOperandes.size()-1);
 		}
 		catch(NumberFormatException e) {
 			System.out.println("Erreur : une opérande n'a pas le bon format.");
+			this.listeOperandes.remove(this.listeOperandes.size()-1);
 		}
 	}
 }
