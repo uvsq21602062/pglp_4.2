@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author jean
  *
  */
-public class MoteurRPN extends Interpreteur {
+public class MoteurRPN extends Interpreteur<Integer> {
 	private ArrayList<Integer> listeOperandes;
 	
 	/**
@@ -25,7 +25,7 @@ public class MoteurRPN extends Interpreteur {
 	 */
 	public int ajouter(String nomCommande) {
 		if(nomCommande == "undo" || nomCommande == "quit") {
-			return super.ajouter(nomCommande);
+			return super.ajouter(nomCommande, this.listeOperandes);
 		}
 		else if(nomCommande == "enregistrer") {
 			Commande c = new CommandeEnregistrerOp();
@@ -33,12 +33,12 @@ public class MoteurRPN extends Interpreteur {
 			return 1;
 		}
 		else if(nomCommande == "obtenir") {
-			Commande c = new CommandeEnregistrerOp();
+			Commande c = new CommandeObtenirOp();
 			this.mapCommande.put(nomCommande, c);
 			return 1;
 		}
 		else if(nomCommande == "appliquer") {
-			Commande c = new CommandeEnregistrerOp();
+			Commande c = new CommandeOperationSurOp(this.listeOperandes);
 			this.mapCommande.put(nomCommande, c);
 			return 1;
 		}
@@ -52,7 +52,7 @@ public class MoteurRPN extends Interpreteur {
 	 */
 	public int executer(String nomCommande) {
 		if(nomCommande == "undo" || nomCommande == "quit") {
-			return super.ajouter(nomCommande);
+			return super.executer(nomCommande);
 		}
 		else {
 			if(this.mapCommande.get(nomCommande) == null) {

@@ -5,7 +5,6 @@ package fr.uvsq.uvsq21602062.projet_maven;
  * @author jean
  *
  */
-
 public class CommandeQuit implements Commande {
 	public void execute() {
 		System.out.println("Au revoir");

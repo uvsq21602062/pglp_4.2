@@ -8,34 +8,34 @@ public class InterpreteurTest {
 
 	@Test
 	public void testAjouterUndo() {
-		Interpreteur i = new Interpreteur();
-		assertTrue(i.ajouter("undo") == 1);
+		Interpreteur<Integer> i = new Interpreteur<Integer>();
+		assertTrue(i.ajouter("undo", null) == 1);
 	}
 	
 	@Test
 	public void testAjouterQuit() {
-		Interpreteur i = new Interpreteur();
-		assertTrue(i.ajouter("quit") == 1);
+		Interpreteur<Integer> i = new Interpreteur<Integer>();
+		assertTrue(i.ajouter("quit", null) == 1);
 	}
 	
 	@Test
 	public void testAjouterAutre() {
-		Interpreteur i = new Interpreteur();
-		assertTrue(i.ajouter("autre") == 0);
+		Interpreteur<Integer> i = new Interpreteur<Integer>();
+		assertTrue(i.ajouter("autre", null) == 0);
 	}
 	
 	@Test
 	public void testExecuterVrai() {
-		Interpreteur i = new Interpreteur();
-		i.ajouter("undo");
+		Interpreteur<Integer> i = new Interpreteur<Integer>();
+		i.ajouter("undo", null);
 		assertTrue(i.executer("undo") == 1);
 	}
 	
 	@Test
 	public void testExecuterFaux() {
-		Interpreteur i = new Interpreteur();
-		i.ajouter("undo");
-		assertTrue(i.executer("quit") == 1);
+		Interpreteur<Integer> i = new Interpreteur<Integer>();
+		i.ajouter("undo", null);
+		assertTrue(i.executer("quit") == 0);
 	}
 
 }

@@ -1,5 +1,6 @@
 package fr.uvsq.uvsq21602062.projet_maven;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -7,7 +8,7 @@ import java.util.HashMap;
  * @author jean
  *
  */
-public class Interpreteur {
+public class Interpreteur<T> {
 	protected HashMap<String, Commande> mapCommande;
 	
 	/**
@@ -22,9 +23,9 @@ public class Interpreteur {
 	 * @param nomCommande
 	 * La valeur de retour correspond au succes ou non de l'ajout.
 	 */
-	public int ajouter(String nomCommande) {
+	public int ajouter(String nomCommande, ArrayList<T> arg) {
 		if(nomCommande == "undo") {
-			Commande c = new CommandeUndo();
+			Commande c = new CommandeUndo<T>(arg);
 			this.mapCommande.put("undo", c);
 		}
 		else if(nomCommande == "quit") {
