@@ -25,10 +25,26 @@ public class MoteurRPNTest {
 	}
 	
 	@Test
-	public void testExecuterVrai() {
+	public void testExecuterEnregistrer() {
 		MoteurRPN m = new MoteurRPN();
 		m.ajouter("enregistrer");
+		m.nouvelleOperande("34");
 		assertTrue(m.executer("enregistrer") == 1);
+	}
+	
+	@Test
+	public void testExecuterAppliquer() {
+		MoteurRPN m = new MoteurRPN();
+		m.ajouter("appliquer");
+		m.nouvelOperateur("+");
+		assertTrue(m.executer("appliquer") == 1);
+	}
+	
+	@Test
+	public void testExecuterObtenir() {
+		MoteurRPN m = new MoteurRPN();
+		m.ajouter("obtenir");
+		assertTrue(m.executer("obtenir") == 1);
 	}
 	
 	@Test

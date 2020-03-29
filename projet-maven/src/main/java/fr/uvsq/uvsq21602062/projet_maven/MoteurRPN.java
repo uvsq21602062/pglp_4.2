@@ -8,15 +8,15 @@ import java.util.ArrayList;
  * @author jean
  *
  */
-public class MoteurRPN extends Interpreteur<Integer> {
-	private ArrayList<Integer> listeOperandes;
+public class MoteurRPN extends Interpreteur<String> {
+	private ArrayList<String> listeOperandes;
 	
 	/**
 	 * Constructeur initialisant l'attribut ListeOperandes.
 	 */
 	public MoteurRPN() {
 		super();
-		this.listeOperandes = new ArrayList<Integer>();
+		this.listeOperandes = new ArrayList<String>();
 	}
 	
 	/**
@@ -28,12 +28,12 @@ public class MoteurRPN extends Interpreteur<Integer> {
 			return super.ajouter(nomCommande, this.listeOperandes);
 		}
 		else if(nomCommande == "enregistrer") {
-			Commande c = new CommandeEnregistrerOp();
+			Commande c = new CommandeEnregistrerOp(this.listeOperandes);
 			this.mapCommande.put(nomCommande, c);
 			return 1;
 		}
 		else if(nomCommande == "obtenir") {
-			Commande c = new CommandeObtenirOp();
+			Commande c = new CommandeObtenirOp(this.listeOperandes);
 			this.mapCommande.put(nomCommande, c);
 			return 1;
 		}
@@ -45,6 +45,22 @@ public class MoteurRPN extends Interpreteur<Integer> {
 		else {
 			return 0;
 		}
+	}
+	
+	/**
+	 * Méthode à appeler avant d'executer la commande enregistrer.
+	 * @param operande
+	 */
+	public void nouvelleOperande(String operande) {
+		this.listeOperandes.add(operande);
+	}
+	
+	/**
+	 * Méthode à appeler avant d'executer la commande appliquer.
+	 * @param operateur
+	 */
+	public void nouvelOperateur(String operateur) {
+		this.listeOperandes.add(operateur);
 	}
 	
 	/**

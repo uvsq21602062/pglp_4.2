@@ -9,31 +9,34 @@ import java.util.ArrayList;
  *
  */
 public class CommandeOperationSurOp implements Commande {
-	private ArrayList<Integer> listeOperandes;
-	private String operation;
+	private ArrayList<String> listeOperandes;
 	
-	public CommandeOperationSurOp(ArrayList<Integer> liste) {
+	public CommandeOperationSurOp(ArrayList<String> liste) {
 		this.listeOperandes = liste;
-		this.operation = "";
-	}
-	
-	public void setOperation(String operation) {
-		this.operation = operation;
 	}
 	
 	public void execute() {
-		int x = this.listeOperandes.get(this.listeOperandes.size()-1);
-		int y = this.listeOperandes.get(this.listeOperandes.size()-2);
-		this.listeOperandes.remove(this.listeOperandes.size()-1);
-		this.listeOperandes.remove(this.listeOperandes.size()-1);
-		
-		if(this.operation == "+") this.listeOperandes.add(x+y);
-		else if(this.operation == "-") this.listeOperandes.add(x-y);
-		else if(this.operation == "*") this.listeOperandes.add(x*y);
-		else if(this.operation == "/") {
-			if(y == 0) System.out.println("Division par 0 impossible.");
-			else this.listeOperandes.add(x/y);
+		try {
+			String operation = this.listeOperandes.get(this.listeOperandes.size()-1);
+			int x = Integer.parseInt(this.listeOperandes.get(this.listeOperandes.size()-2));
+			int y = Integer.parseInt(this.listeOperandes.get(this.listeOperandes.size()-3));
+			this.listeOperandes.remove(this.listeOperandes.size()-1);
+			this.listeOperandes.remove(this.listeOperandes.size()-1);
+			this.listeOperandes.remove(this.listeOperandes.size()-1);
+			if(operation == "+") this.listeOperandes.add(Integer.toString(x+y));
+			else if(operation == "-") this.listeOperandes.add(Integer.toString(x-y));
+			else if(operation == "*") this.listeOperandes.add(Integer.toString(x*y));
+			else if(operation == "/") {
+				if(y == 0) System.out.println("Division par 0 impossible.");
+				else this.listeOperandes.add(Integer.toString(x/y));
+			}
+			else System.out.println("L'operation n'est pas reconnu.");
 		}
-		else System.out.println("L'operation n'est pas reconnu.");
+		catch(IndexOutOfBoundsException e) {
+			System.out.println("Erreur : il n'y a pas assez d'élement dans la liste.");
+		}
+		catch(NumberFormatException e) {
+			System.out.println("Erreur : une opérande n'a pas le bon format.");
+		}
 	}
 }
